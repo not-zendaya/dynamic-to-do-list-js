@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-  function saveTasks() {
+  function loadTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     removedButton.onclick = function () {
       taskList.removeChild(listItem);
       tasks = tasks.filter((task) => task !== taskText);
-      saveTasks();
+      loadTasks();
     };
 
     listItem.appendChild(removedButton);
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     tasks.push(taskText);
-    saveTasks();
+    loadTasks();
     createTaskElement(taskText);
     taskInput.value = "";
   }
